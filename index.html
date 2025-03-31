@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,6 +25,12 @@
           color: white;
           margin: 0;
           padding: 0;
+          background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            
         }
        /* الهيدر */
 .header {
@@ -48,6 +54,7 @@
     height: 50px;
     border-radius: 10px;
     flex-shrink: 0; /* يمنع تصغير الصورة أكثر من اللازم */
+    flex-direction: column;
 }
 
 /* العنوان في المنتصف */
@@ -63,9 +70,11 @@
 .search-bar {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 1px;
     flex-shrink: 1; /* يسمح له بالتصغير ولكن بدون كسر التصميم */
+    flex-direction:row-reverse ;
 }
+
 
 .search-bar input {
     padding: 8px;
@@ -118,43 +127,98 @@
 .section-box:hover {
     background: #ff4500;
 }
+/* الشعار الخاص بـ PS4 */
+.ps4-badge {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 40px;  /* حجم الشعار */
+    height: 40px; /* تأكد من أن الشعار مربع */
+    background: rgba(0, 0, 0, 0.5); /* خلفية شفافة مظلمة خلف الشعار */
+    padding: 5px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10; /* تأكد من أن الشعار فوق اللعبة */
+}
 
+/* صورة الأيقونة داخل الشعار */
+.ps4-badge img {
+    width: 100%; /* ملء مساحة العنصر */
+    height: auto;
+}
+
+/* تصميم اللعبة */
 .game {
-         background-color: #1d1a27;
-         border-style: solid;
-         border-width: 10px 10px 30px 10px;
-         width: 190px;
-         height: 254px;
-         padding: 10px;
-         border-color: #E0DEDE00;
-         border-radius: 8px;
-         border: 2px solid #FFFFFF29;
-         transition: all 0.3s;   
-         box-shadow: 2px -3px 13px 17px rgba(0, 0, 0, 0.5);
-       }
-           .game img {
-        width: 190px !important;
-        height: 190px !important;
-        object-fit: cover; /* يحافظ على تناسب الصورة */
-        border-radius: 8px;
-    }
-    .game-title {
-            margin-top: 1px;
-            font-size: 12px;
-            font-weight: bold;
-            color: #ff4500;
-      
-        }
-        .download-btn {
-            padding: 10px 20px;
-            background-color: #007acc;
-            color: #ffffff;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-top: 10px        }
+    position: relative; /* لضمان أن العلامة توضع داخل العنصر */
+    background-color: #1d1a27;
+    border-style: solid;
+    border-width: 10px 10px 30px 10px;
+    width: 190px;
+    height: 254px;
+    padding: 10px;
+    border-color: #E0DEDE00;
+    border-radius: 8px;
+    border: 2px solid #FFFFFF29;
+    transition: all 0.3s;
+    box-shadow: 2px -3px 13px 17px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* إضافة الأيقونة تلقائيًا على جميع الألعاب */
+.game::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 12px;
+    width: 40px; /* حجم الأيقونة */
+    height: 40px;
+    background-image: url('https://img.icons8.com/?size=100&id=oDphkoWwBm40&format=png&color=000000'); /* مسار الأيقونة */
+    background-size: contain; /* تكبير الأيقونة لتتناسب مع المساحة */
+    background-repeat: no-repeat; /* عدم تكرار الأيقونة */
+    background-position: center; /* وضع الأيقونة في المنتصف */
+    background-color: rgba(0, 0, 0, 0.0); /* خلفية شفافة مظلمة */
+    border-radius: 5px;
+    z-index: 10; /* تأكد من أن الأيقونة فوق الصورة */
+}
+
+/* تصميم عنوان اللعبة */
+.game-title {
+    margin-top: 1px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #ff4500;
+}
+
+/* تصميم زر التحميل */
+.download-btn {
+    padding: 10px 20px;
+    background-color: #007acc;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* تنسيق العداد بجانب الزر */
+.counter {
+    margin-left: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ff4500;
+    background-color: #f0f0f0;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+}
+
         #searchBox {
-            width: 300px;
+            width: 100px;
             padding: 10px;
             margin: 20px;
             font-size: 16px;
@@ -181,55 +245,51 @@
             background-color: #ff4500;
         }
         .slider {
-            width:95%;
-            max-width: 800px;
-            height: 100%;
-            overflow: hidden;
-            position: relative;
-            margin: 20px auto;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-
-
-.slides {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
+    width: 100%;
+    height: 60vh;
+    position: relative;
+    overflow: hidden;
 }
 
 .slide {
-    min-width: 100%;
+    position: absolute;
+    width: 100%;
     height: 100%;
-    position: relative;
-    box-sizing: border-box;
+    opacity: 0;
+    transition: opacity 2s ease-in-out, filter 2s ease-in-out;
 }
 
 .slider img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 15px;
 }
 
-/* تصميم زر التحميل في وسط الصورة */
-.download-btn-slider {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    text-decoration: none;
-    transition: 0.3s;
+/* عندما تكون الصورة نشطة */
+.active {
+    opacity: 1 !important;
+    filter: brightness(0.8);
 }
 
-.download-btn-slider:hover {
-    background-color: red;
-}
+        /* زر التحميل في المنتصف */
+        .download-btn-slider {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-size: 18px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .download-btn-slider:hover {
+            background-color: red;
+        }
 
         .back-to-top {
     position: fixed;
@@ -397,8 +457,9 @@ a:hover {
 /* 🌟 تحسينات للشاشات الصغيرة */
 @media (max-width: 768px) {
     .header {
-        flex-direction: column;
+        flex-direction: column-reverse;
         text-align: center;
+        display: flex;
     }
 
     .site-title {
@@ -436,6 +497,7 @@ a:hover {
     }
 }
         .logo img {
+            display: flex;
     height: 50px;
     border-radius: 10px;
     transition: transform 0.3s ease, opacity 0.3s ease;
@@ -493,6 +555,7 @@ a:hover {
         display: grid;
         grid-template-columns: repeat(3, 1fr); /* عرض لعبتين في كل صف */
         gap: 8px; /* إضافة مسافة بين الألعاب */
+        
     }
 
     .game {
@@ -615,9 +678,10 @@ a:hover {
 }
 
 .dark-mode {
-    background-color: #121212;
+    background-color: #140e0e;
     color: white;
 }
+
 
 .container {
     margin-top: 20px;
@@ -653,8 +717,8 @@ a:hover {
     display: flex;
     align-items: center;
     justify-content: space-between; /* يجعل الشمس يسارًا والقمر يمينًا */
-    width: 70px; /* توسيع العنصر لإظهار التغيير */
-    height: 20px;
+    width: 40px; /* توسيع العنصر لإظهار التغيير */
+    height: 15px;
     background-color: #ddd;
     border-radius: 50px;
     padding: 5px;
@@ -668,12 +732,12 @@ a:hover {
 }
 
 .toggle-slider {
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
     background-color: white;
     border-radius: 50%;
     position: absolute;
-    left: 5px; /* موضع الكرة عند الوضع الفاتح */
+    left: 1px; /* موضع الكرة عند الوضع الفاتح */
     transition: transform 0.5s ease-in-out;
 }
 
@@ -693,6 +757,254 @@ a:hover {
 .toggle-theme .fa-moon {
     color: #555; /* لون القمر */
 }
+ /* ======== السلايدر السفلي الجديد ======== */
+ .bottom-slider {
+            position: sticky;
+            width: 80%;
+            height: 200px;
+            overflow: hidden;
+            margin: -10px auto 02px; /* ليكون فوق حاوية الألعاب */
+            z-index: 10;
+            mask-image: linear-gradient(to right, transparent, #000 10% 90%, transparent);
+            display: block; /* نضمن أنه يظهر بشكل افتراضي */
+        }
+
+        .bottom-slider .list {
+            display: flex;
+            width: 100%;
+            min-width: calc(200px * 9);
+            position: relative;
+        }
+
+        .bottom-slider .item {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            left: 100%;
+            animation: autoRun 10s linear infinite;
+            transition: filter 0.5s;
+            animation-delay: calc((10s / 9) * (var(--position) - 1) - 10s) !important;
+        }
+
+        .bottom-slider .item img {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        @keyframes autoRun {
+            from {
+                left: 100%;
+            }
+            to {
+                left: -200px;
+            }
+        }
+
+        .bottom-slider:hover .item {
+            animation-play-state: paused !important;
+            filter: grayscale(1);
+        }
+
+        .bottom-slider .item:hover {
+            filter: grayscale(0);
+        }
+
+        .fade-in {
+    animation: fadeIn 1s ease-in-out;
+}
+/* ✅ تعيين الأساسيات للنافبار */
+.navbar {
+    background-color: #0e1329; /* خلفية داكنة */
+    padding: 5px 10px;
+    position: relative;
+    z-index: 1000;
+    box-shadow: -1px 1px 20px 4px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ✅ تصميم القائمة الرئيسية */
+.menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+}
+
+.menu > li {
+    position: relative;
+}
+
+.menu > li > a {
+    color: #fff; /* اللون الأبيض للنص */
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+    font-size: 13px;
+    transition: 0.3s;
+    border-radius: 5px;
+}
+
+.menu > li > a:hover {
+    background-color: #ff4500; /* اللون البرتقالي عند التمرير */
+    color: #fff; /* النص يبقى أبيض */
+}
+/* تصميم القائمة المنسدلة */
+.submenu {
+    list-style: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #0e1329; /* لون داكن للقائمة المنسدلة */
+    width: 180px;
+    display: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    text-align: center; /* محاذاة النص في المنتصف */
+}
+
+.submenu li {
+    display: block;
+}
+
+.submenu li a {
+    color: #fff; /* النص يكون أبيض */
+    text-decoration: currentColor;
+    padding: 10px;
+    display: block;
+    font-size: 14px; /* حجم الخط متوسط */
+    transition: 0.3s;
+}
+
+/* تغيير اللون عند التمرير */
+.submenu li a:hover {
+    background-color: #ff4500; /* اللون البرتقالي عند التمرير */
+}
+
+/* التأثير عند التمرير على العنصر الأساسي لعرض القائمة */
+.menu li:hover .submenu {
+    display: block;
+    opacity: 1;
+}
+
+/* تنسيق الهاتف */
+@media (max-width: 768px) {
+    .submenu {
+        width: 100%; /* ملاءمة العرض على الهواتف */
+        left: 0;
+    }
+
+    .submenu li a {
+        font-size: 16px; /* تكبير حجم الخط قليلًا للأجهزة الصغيرة */
+        padding: 12px; /* زيادة المسافة بين النصوص */
+    }
+}
+
+
+/* ✅ إضافة أيقونات للقائمة */
+.menu i {
+    margin-right: 5px;
+}
+
+/* ✅ تحسين البحث وزر الوضع الليلي */
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#searchBox {
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    width: 100px;
+}
+
+.toggle-theme {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.toggle-slider {
+    width: 30px;
+    height: 15px;
+    background-color: #ccc;
+    border-radius: 15px;
+    margin: 0 5px;
+    position: relative;
+}
+
+.toggle-slider::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 2px;
+    width: 23px;
+    height: 19px;
+    background-color: #fff;
+    border-radius: 60%;
+    transition: all 0.3s ease;
+}
+
+/* ✅ تغيير الشكل عند التبديل بين الوضعين */
+body.dark-mode .toggle-slider::before {
+    transform: translateX(15px);
+}
+
+@media (max-width: 768px) {
+    /* ✅ تصميم متجاوب مع الهاتف */
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .menu {
+        display: block;
+        width: 100%;
+        gap: 0;
+    }
+
+    .menu > li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .menu > li > a {
+        width: 100%;
+        text-align: center;
+    }
+
+    .submenu {
+        position: static;
+        display: none;
+        width: 100%;
+        box-shadow: none;
+    }
+
+    .menu li:hover .submenu {
+        display: block;
+    }
+}
+
+.menu li a i {
+    font-size: 18px; /* حجم الأيقونة */
+    color: #6f1414; /* لون الأيقونة */
+}
+li a svg {
+    fill: white; /* Change to any color */
+    width: 18px;
+    height: 18px;
+    margin-right: 5px;
+}
+
     </style>
 </head>
 <body>
@@ -707,12 +1019,30 @@ a:hover {
     
 </div>
 <div class="site-title"></div>
-    <nav class="nav">
-        <a href="about.html">من نحن</a>
-        <a href="contact.html">اتصل بنا</a>
-        <a href="games.html">الألعاب</a>
-        <a href="index.html">الرئيسية</a>
-    </nav>
+<nav class="navbar">
+    <ul class="menu">
+        <li><a href="themes.html">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="white">
+                <path d="M7 16c-2.8 0-4 2.2-4 4s1.5 4 4 4 4-2.2 4-4-1.2-4-4-4zm0 6c-1.3 0-2-.9-2-2s.7-2 2-2 2 .9 2 2-.7 2-2 2zm14.3-20.9c-.4-.4-1-.4-1.4 0L11.8 9.1l3.6 3.6 8.2-8.2c.4-.4.4-1 0-1.4l-2.3-2.3zM12.9 11l-4.5-4.5 8.2-8.2 4.5 4.5-8.2 8.2z"></path>
+            </svg> Themes
+        </a></li>
+        <li>
+            <a href="downloads.html"><i class="fas fa-download"></i> التحميلات</a>
+        </li>
+        <li>
+            <a href="#"><i class="fas fa-gamepad"></i> الألعاب <i class="fas fa-chevron-down"></i></a>
+            <ul class="submenu">
+                <li><a href="ps4arabic.html">
+                <img src="icons/ps4.png" alt="PS4 Arabic"> PS4 Arabic</a></li>
+                <li><a href="PS2_to_PS4.html">
+                    <img src="icons/PS2-to-PS4.png" alt="PS2 to PS4"> PS2 to PS4</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
+        </li>
+    </ul>
+</nav>
     <link rel="apple-touch-icon" sizes="180x180" href="https://ibb.co/wZcQ0Bpw">
     <link rel="icon" type="image/png" sizes="32x32" href="https://ibb.co/wZcQ0Bpw">
     <link rel="icon" type="image/png" sizes="16x16" href="https://ibb.co/wZcQ0Bpw">
@@ -721,25 +1051,83 @@ a:hover {
         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhHcMvRugU93ejZqWSH9mMLSk6TKk9D9X15XRiNk85OEgnxeI9ZWuAcpVbhTUrSoUWWCdf7xNd_XyIt8rPWGDEIyO7DTDENTmNwr7OK_yQqw695CXEbA34JdePj__sUqoYnGVTEXwYngFnkqyJ64davRoQ-6Ga7XqvrPa8vOhQdGmbXcUd_2eehNrd0q_k/s1600/PS4GAMEARABIC-2-22-2025%20%284%29.png" alt="PS4 Logo">
     </div>
 </div>
-
-<!-- سلايدر الصور -->
-<div class="slider">
-    <div class="slides" id="slider">
-        <div class="slide">
-            <img src="https://p4.wallpaperbetter.com/wallpaper/402/640/44/uncharted-4-a-thief-s-end-nathan-drake-video-games-uncharted-wallpaper-preview.jpg" alt="لعبة 1">
-            <a href="game1-download-link" class="download-btn-slider">تحميل اللعبة</a>
-        </div>
-        <div class="slide">
-            <img src="https://p4.wallpaperbetter.com/wallpaper/320/998/398/nathan-drake-uncharted-4-a-thiefs-end-best-games-of-2016-wallpaper-preview.jpg" alt="لعبة 2">
-            <a href="game2-download-link" class="download-btn-slider">تحميل اللعبة</a>
-        </div>
-        <div class="slide">
-            <img src="https://p4.wallpaperbetter.com/wallpaper/584/677/249/uncharted-uncharted-4-a-thief-s-end-nathan-drake-sam-drake-wallpaper-preview.jpg" alt="لعبة 3">
-            <a href="game3-download-link" class="download-btn-slider">تحميل اللعبة</a>
+<!-- السلايدر الخلفي -->
+<div class="slider-container">
+    <div class="slider">
+        <div class="slides" id="slider">
+            <div class="slide">
+                <img src="https://a.top4top.io/p_3195zke7i2.jpg" alt="خلفية 1">
+            </div>
+            <div class="slide">
+                <img src="https://p4.wallpaperbetter.com/wallpaper/320/998/398/nathan-drake-uncharted-4-a-thiefs-end-best-games-of-2016-wallpaper-preview.jpg" alt="خلفية 2">
+            </div>
+            <div class="slide">
+                <img src="https://i.postimg.cc/nrd071xM/The-Last-of-Us-2.webp" alt="خلفية 3">
+            </div>
+            <div class="slide">
+                <img src="https://i.postimg.cc/Hsx0vDqM/The-Shadow-of-the-Tomb-Raider-6.webp" alt="خلفية 1">
+            </div>
+            <div class="slide">
+                <img src="https://i.postimg.cc/MGw68WB6/Call-of-Duty-Black-Ops-6-2.jpg" alt="خلفية 2">
+            </div>
+            <div class="slide">
+                <img src="https://i.blogs.es/0909e3/22d5eb03beb6c11b403050ac006039aa/1366_2000.jpeg" alt="خلفية 3">
+            </div>
         </div>
     </div>
 </div>
 
+ </style><!-- السلايدر السفلي الجديد -->
+<div class="bottom-slider">
+    <div class="list">
+        <!-- إضافة رابط لكل صورة -->
+        <div class="item" style="--position: 1">
+            <a href="downloads/God_of_War.html" target="_blank">
+                <img src="images/godofwar4.jpg" alt="صورة 1">
+            </a>
+        </div>
+        <div class="item" style="--position: 2">
+            <a href="downloads/The_Last_of_Us_2.html" target="_blank">
+                <img src="images/tlou2.jpg" alt="صورة 2">
+            </a>
+        </div>
+        <div class="item" style="--position: 3">
+            <a href="downloads/God_of_War_Ragnarok.html" target="_blank">
+                <img src="images/gowragnarok.jpg" alt="صورة 3">
+            </a>
+        </div>
+        <div class="item" style="--position: 4">
+            <a href="downloads/Marvels_Spider_Man_Miles_Morales.html" target="_blank">
+                <img src="images/marvelsSpidermorales.jpg" alt="صورة 4">
+            </a>
+        </div>
+        <div class="item" style="--position: 5">
+            <a href="downloads/Red_Dead_Redemption_2.html" target="_blank">
+                <img src="images/reddeadRed2.jpg" alt="صورة 5">
+            </a>
+        </div>
+        <div class="item" style="--position: 6">
+            <a href="downloads/Uncharted_4.html" target="_blank">
+                <img src="images/uncharted4.jpg" alt="صورة 6">
+            </a>
+        </div>
+        <div class="item" style="--position: 7">
+            <a href="downloads/Bloodborne_Game.html" target="_blank">
+                <img src="images/bloodborne.jpg" alt="صورة 7">
+            </a>
+        </div>
+        <div class="item" style="--position: 8">
+            <a href="downloads/Days_Gone.html" target="_blank">
+                <img src="images/daysgone.jpg" alt="صورة 8">
+            </a>
+        </div>
+        <div class="item" style="--position: 9">
+            <a href="downloads/Grand_Theft_Auto_V.html" target="_blank">
+                <img src="images/gtav.jpg" alt="صورة 9">
+            </a>
+        </div>
+    </div>
+</div>
 
 <!-- محتوى الألعاب -->
 <div class="container">
@@ -771,8 +1159,6 @@ a:hover {
     <div className="text-sm">Copyright &copy; 2025 | by Hanyf Mustafa</div>
 </div>
 <button id="backToTop" class="back-to-top">🔝</button>
-
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
         let allGames = [
@@ -1069,7 +1455,7 @@ a:hover {
     {
         "title": "Grand Theft Auto III / arabic",
         "image": "images/gta3.jpg",
-        "downloadLink": "downloads/Grand_Theft_Auto_III.html"
+        "downloadLink": "downloads/Grand_Theft_Auto_III_The_Definitive_Edition.html"
     },
     {
         "title": "Grand Theft Auto San Andreas / arabic",
@@ -1082,19 +1468,9 @@ a:hover {
         "downloadLink": "downloads/Grand_Theft_Auto_Vice_City.html"
     },
     {
-        "title": "Grand Theft Auto The Trilogy The Definitive Edition / arabic",
-        "image": "images/gtatrilogy.jpg",
-        "downloadLink": "downloads/Grand_Theft_Auto_The_Trilogy_The_Definitive_Edition.html"
-    },
-    {
-        "title": "Grand Theft Auto Liberty City Stories / arabic",
+        "title": "Grand Theft Auto Liberty City Stories / english",
         "image": "images/gtalcs.jpg",
         "downloadLink": "downloads/Grand_Theft_Auto_Liberty_City_Stories.html"
-    },
-    {
-        "title": "Grand Theft Auto Chinatown Wars / arabic",
-        "image": "images/gtacw.jpg",
-        "downloadLink": "downloads/Grand_Theft_Auto_Chinatown_Wars.html"
     },
     {
         "title": "Tombe Raider Definitive Edition / arabic",
@@ -1112,37 +1488,37 @@ a:hover {
         "downloadLink": "downloads/Tomb_Raider_Shadow_of_the_Tomb_Raider.html"
     },
     {
-        "title": "Tomb Raider Legend / arabic",
+        "title": "Tomb Raider Legend / english",
         "image": "images/tomberaiderlegend.jpg",
         "downloadLink": "downloads/Tomb_Raider_Legend.html"
     },
     {
-        "title": "Tomb Raider Anniversary / arabic",
+        "title": "Tomb Raider Anniversary / english",
         "image": "images/tomberaideranniversary.jpg",
         "downloadLink": "downloads/Tomb_Raider_Anniversary.html"
     },
     {
-        "title": "Tomb Raider Underworld / arabic",
+        "title": "Tomb Raider Underworld / english",
         "image": "images/tomberaiderunderworld.jpg",
         "downloadLink": "downloads/Tomb_Raider_Underworld.html"
     },
     {
-        "title": "Tomb Raider I-II-III Remastere / arabic",
+        "title": "Tomb Raider I-II-III Remastere / english",
         "image": "images/tomberaider123Remastere.jpg",
         "downloadLink": "downloads/Tomb_Raider_I_II_III_Remastere.html"
     },
     {
-        "title": "watch dogs legion / arabic",
+        "title": "Watch Dogs legion / arabic",
         "image": "images/watchdogslegion.jpg",
         "downloadLink": "downloads/Watch_Dogs_Legion.html"
     },
     {
-        "title": "watch dogs 2 gold edition / arabic",
+        "title": "Watch Dogs 2 Gold Edition / arabic",
         "image": "images/watchdogs2gold.jpg",
         "downloadLink": "downloads/Watch_Dogs_2_Gold_Edition.html"
     },
     {
-        "title": "watch dogs complete edition / arabic",
+        "title": "Watch Dogs Complete Edition / english",
         "image": "images/watchdogscomplete.jpg",
         "downloadLink": "downloads/Watch_Dogs_Complete_Edition.html"
     },
@@ -1155,11 +1531,6 @@ a:hover {
         "title": "Call of Duty Black Ops Cold War / arabic",
         "image": "images/codblackopscoldwar.jpg",
         "downloadLink": "downloads/Call_of_Duty_Black_Ops_Cold_War.html"
-    },
-    {
-        "title": "Call of Duty Modern Warfare / arabic",
-        "image": "images/codmodernwarfare.jpg",
-        "downloadLink": "downloads/Call_of_Duty_Modern_Warfare.html"
     },
     {
         "title": "Call of Duty Black Ops 6",
@@ -1223,31 +1594,27 @@ a:hover {
     }
     
 ];
+        
 let games = [...allGames]; // نسخة قابلة للتعديل للألعاب
-const gamesPerPage = 50;
+const gamesPerPage = 40;
 let currentPage = 1;
 
-// استعادة رقم الصفحة من localStorage عند تحميل الصفحة
 document.addEventListener("DOMContentLoaded", function () {
-    const savedPage = localStorage.getItem("currentPage");
+    const savedPage = sessionStorage.getItem("previousPage");
     if (savedPage) {
-        currentPage = parseInt(savedPage, 10) || 1; // تحميل الصفحة المحفوظة أو الرجوع إلى 1 إذا كان هناك خطأ
+        currentPage = parseInt(savedPage, 10);
+        sessionStorage.removeItem("previousPage"); // إزالة القيم بعد استخدامها
     }
     createGameSection();
 });
 
-// تحديث `localStorage` عند تغيير الصفحة
-function updatePageState() {
-    localStorage.setItem("currentPage", currentPage);
-    history.replaceState({ page: currentPage }, "", "?page=" + currentPage);
-}
-
-// عند التنقل بين الصفحات يتم تحديث رقم الصفحة
-function changePage(newPage) {
-    currentPage = newPage;
-    updatePageState();
-    createGameSection();
-}
+// عند الضغط على زر الرجوع في المتصفح، استرجاع الصفحة السابقة
+window.addEventListener("popstate", function (event) {
+    if (event.state && event.state.page) {
+        currentPage = event.state.page;
+        createGameSection();
+    }
+});
 
 function createGameSection() {
     const gameGrid = document.getElementById("game-grid");
@@ -1258,8 +1625,8 @@ function createGameSection() {
     const totalPages = Math.ceil(games.length / gamesPerPage);
     currentPage = Math.min(currentPage, totalPages);
 
-    // تحديث رقم الصفحة في العنوان والمتصفح
-    updatePageState();
+    // تحديث عنوان الرابط في المتصفح مع رقم الصفحة
+    history.replaceState({ page: currentPage }, "", "?page=" + currentPage);
 
     const startIndex = (currentPage - 1) * gamesPerPage;
     const endIndex = startIndex + gamesPerPage;
@@ -1284,9 +1651,10 @@ function createGameSection() {
         downloadLink.textContent = "Download";
         downloadLink.classList.add("download-btn");
 
-        // حفظ رقم الصفحة قبل الذهاب إلى صفحة التحميل
+
+        // حفظ رقم الصفحة قبل الذهاب إلى التحميل
         downloadLink.addEventListener("click", function () {
-            localStorage.setItem("currentPage", currentPage);
+            sessionStorage.setItem("previousPage", currentPage);
         });
 
         gameDiv.appendChild(downloadLink);
@@ -1300,25 +1668,40 @@ function createGameSection() {
         prevButton.textContent = "«";
         prevButton.classList.add("arrow");
         prevButton.disabled = currentPage === 1;
-        prevButton.addEventListener("click", () => changePage(currentPage - 1));
+        prevButton.addEventListener("click", () => {
+            if (currentPage > 1) {
+                currentPage--;
+                createGameSection();
+            }
+        });
         pagination.appendChild(prevButton);
 
         for (let i = 1; i <= totalPages; i++) {
             let pageButton = document.createElement("button");
             pageButton.textContent = i;
             if (currentPage === i) pageButton.classList.add("active");
-            pageButton.addEventListener("click", () => changePage(i));
+            pageButton.addEventListener("click", () => {
+                currentPage = i;
+                createGameSection();
+            });
             pagination.appendChild(pageButton);
         }
 
         let nextButton = document.createElement("button");
-        nextButton.textContent = "»";
-        nextButton.classList.add("arrow");
-        nextButton.disabled = currentPage === totalPages;
-        nextButton.addEventListener("click", () => changePage(currentPage + 1));
-        pagination.appendChild(nextButton);
+            nextButton.textContent = "»";
+            nextButton.disabled = currentPage === totalPages;
+            nextButton.addEventListener("click", () => {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    createGameSection();
+                }
+            });
+            pagination.appendChild(nextButton);
+        }
+
+        window.scrollTo(0, 0);
     }
-}
+
 
 // تبديل الوضع الداكن والفاتح
 function toggleTheme() {
@@ -1327,7 +1710,7 @@ function toggleTheme() {
     // تحريك الكرة بين الشمس والقمر
     const slider = document.querySelector(".toggle-slider");
     if (document.body.classList.contains("dark-mode")) {
-        slider.style.transform = "translateX(47px)"; // يتحرك إلى اليمين عند الوضع الداكن
+        slider.style.transform = "translateX(-40px)"; // يتحرك إلى اليمين عند الوضع الداكن
     } else {
         slider.style.transform = "translateX(0)"; // يعود إلى اليسار عند الوضع الفاتح
     }
@@ -1364,21 +1747,67 @@ $("#backToTop").click(function () {
     $("html, body").animate({ scrollTop: 0 }, "smooth");
 });
 
-let currentIndex = 0;
-const slides = document.querySelectorAll(".slide");
-const totalSlides = slides.length;
+// تشغيل شريط التمرير تلقائيًا
+document.addEventListener("DOMContentLoaded", function () {
+    let slides = document.querySelectorAll(".slide");
+    let index = 0;
 
-function moveSlide(step) {
-    currentIndex += step;
-    if (currentIndex >= totalSlides) currentIndex = 0;
-    if (currentIndex < 0) currentIndex = totalSlides - 1;
-    document.getElementById("slider").style.transform = `translateX(-${currentIndex * 100}%)`;
-}
+    function showNextSlide() {
+        slides.forEach((slide) => {
+            slide.classList.remove("active"); // إخفاء كل الصور
+        });
 
-// تحريك السلايدر تلقائيًا كل 3 ثواني
-setInterval(() => moveSlide(1), 3000);
+        slides[index].classList.add("active"); // إظهار الصورة الحالية
+
+        index = (index + 1) % slides.length; // الانتقال للصورة التالية
+        setTimeout(showNextSlide, 4000); // تغيير الصورة كل 4 ثوانٍ
+    }
+
+    showNextSlide(); // بدء التشغيل
+});
+
+function updateSlider() {
+        sliderContainer.innerHTML = ""; // مسح المحتوى القديم
+        let trendingGames = getTrendingGames();
+
+        trendingGames.forEach((game, index) => {
+            let item = document.createElement("div");
+            item.classList.add("item");
+            item.style.setProperty("--position", index + 1);
+            item.innerHTML = `<a href="${game.link}" target="_blank"><img src="${game.img}" alt="${game.name}"></a>`;
+            sliderContainer.appendChild(item);
+        });
+    }
+
+    function getTrendingGames() {
+        let lastUpdate = localStorage.getItem("lastTrendingUpdate");
+        let currentTime = new Date().getTime();
+        let trendingGames;
+
+        if (!lastUpdate || currentTime - lastUpdate > 3 * 24 * 60 * 60 * 1000) {
+            trendingGames = shuffleArray(gameData).slice(0, 5);
+            localStorage.setItem("trendingGames", JSON.stringify(trendingGames));
+            localStorage.setItem("lastTrendingUpdate", currentTime);
+        } else {
+            trendingGames = JSON.parse(localStorage.getItem("trendingGames")) || gameData.slice(0, 5);
+        }
+        return trendingGames;
+    }
+
+    function shuffleArray(array) {
+        let newArray = array.slice();
+        for (let i = newArray.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+            [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+        }
+        return newArray;
+    }
+
+    updateSlider();
+
 
 createGameSection();
+
 
     </script>
 </body>
