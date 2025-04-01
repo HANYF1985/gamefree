@@ -33,16 +33,16 @@
         }
        /* الهيدر */
        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem;
-            border-bottom: 1px solid #ccc;
-            background: #0e1329;
-            flex-wrap: nowrap; /* يمنع العناصر من النزول إلى سطر جديد */
-            box-sizing: border-box; /* يحافظ على تناسق العرض */
-            border-bottom: 2px solid #ff4500;
-        }
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #ccc;
+    background: #0e1329;
+    flex-wrap: nowrap;
+    box-sizing: border-box;
+    border-bottom: 2px solid #ff4500;
+}
 
   .logo {
             font-size: 1.5rem;
@@ -96,14 +96,7 @@
 .search-bar button:hover {
     background: #0e1329;
 }
-/* أقسام الموقع */
-.sections {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap; /* يسمح بانتقال العناصر عند الحاجة */
-    margin-top: 15px;
-}
+
 
 /* الأزرار */
 .section-box {
@@ -337,7 +330,7 @@
     }
 
 .footer {
-    background-color: #140e0e; /* خلفية داكنة */
+    background-color: #0e1329; /* خلفية داكنة */
     padding: 3px;
     text-align: center;
 }
@@ -769,7 +762,7 @@ a:hover {
 }
 
 .menu > li > a {
-    color: #fff; /* اللون الأبيض للنص */
+    color: #ffffff; /* اللون الأبيض للنص */
     text-decoration: none;
     padding: 10px 15px;
     display: block;
@@ -868,7 +861,7 @@ a:hover {
 ;
     gap: 20px;
     padding: 1rem;
-    background-color: #f3f3f3;
+    background-color: #0e1329;
     flex-wrap: nowrap;
     box-sizing: border-box;
     border-bottom: 2px solid #ff4500;
@@ -883,21 +876,11 @@ a:hover {
             position: relative;
             display: inline-block;
         }
-        .dropdown button {
-            background-color: #007BFF;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        .dropdown button:hover {
-            background-color: #0056b3;
-        }
+       
         .dropdown-menu {
             display: none;
             position: absolute;
-            background-color: #f8f8f8;
+            background-color: #0e1329;
             min-width: 150px;
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
             border-radius: 5px;
@@ -913,11 +896,11 @@ a:hover {
             gap: 10px;
             padding: 10px 15px;
             text-decoration: none;
-            color: black;
+            color: rgb(243, 242, 242);
             transition: background-color 0.3s;
         }
         .dropdown-menu a:hover {
-            background-color: #ddd;
+            background-color: #ff4500;
         }
         .dropdown-menu a i {
             font-size: 18px;
@@ -930,33 +913,56 @@ a:hover {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
+        .container {
+           
+            grid-template-columns: repeat(4, 1fr);
         
+        }
     </style>
 </head>
 <body>
     <header class="header">
-        <div class="logo">🎮 Logo</div>
-        <div class="site-title">Gaming World</div>
+        <div class="logo"><img src="icons/logo.png" alt="PS4 Logo"></div>
+        <div class="site-title">PS4.G.AR</div>
         <div class="header-controls">
             <input type="text" id="searchBox" placeholder="بحث..." class="search-box">
             </div>
         </div>
     </header>
         <nav class="navbar">
-            <a href="#"><i class="fas fa-home"></i> الرئيسية</a>
+            <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
             <div class="dropdown">
-                <button><i class="fas fa-gamepad"></i> الألعاب ▼</button>
+                <a href="#"><i class=""></i> PS4</a>
                 <div class="dropdown-menu">
-                    <a href="#"><i class="fas fa-play"></i> لعبة 1</a>
-                    <a href="#"><i class="fas fa-play"></i> لعبة 2</a>
+                    <a href="ps4arabic.html">
+                        <i class=""></i>PS4-Arabic</a>
+                    <a href="PS2_to_PS4.html">
+                        <i class=""></i> PS2 to PS4</a>
                 </div>
             </div>
             <div class="dropdown">
-                <button>أنواع الألعاب ▼</button>
+                <a href="#"><i class=""></i> PS5</a>
                 <div class="dropdown-menu">
-                    <a href="#">أكشن</a>
-                    <a href="#">مغامرات</a>
+                    <a href="#">PS5-Arabic</a>
+                    <a href="#"></a>
                 </div>
+            </div>
+            <div class="dropdown">
+                <a href="#"><i class=""></i> THEMES</a>
+                <div class="dropdown-menu">
+                    <a href="#">PS4</a>
+                    <a href="#">PS5</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="#"><i class=""></i> MOD</a>
+                <div class="dropdown-menu">
+                    <a href="#">MOD GTA V</a>
+                    <a href="#">MOD RDR 2</a>
+                </div>
+            </div>
+                  <div class="dropdown">
+                <a href="#"><i class=""></i> APP.PKG</a>
             </div>
         </nav>
 <!-- السلايدر الخلفي -->
@@ -1042,6 +1048,8 @@ a:hover {
     <h1> PS4 لتحميل أحدث ألعاب </h1>
     <div id="game-grid"></div>
     <div id="pagination"></div>
+    </footer>
+<footer class="footer">
     <div style="text-align: center; margin-top: 20px;">
     <a href="https://web.facebook.com/share/v/1BRSsTQf57/" target="_blank">
         <img src="https://img.icons8.com/?size=100&id=uLWV5A9vXIPu&format=png&color=000000" alt="Facebook" width="40">
@@ -1504,7 +1512,7 @@ a:hover {
 ];
         
 let games = [...allGames]; // نسخة قابلة للتعديل للألعاب
-const gamesPerPage = 40;
+const gamesPerPage = 28;
 let currentPage = 1;
 
 document.addEventListener("DOMContentLoaded", function () {
