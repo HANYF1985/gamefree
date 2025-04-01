@@ -327,18 +327,6 @@
             background-color: #e68900;
         }
           /* الحاوية */
-.container {
-    max-width: 1200px; /* عرض ثابت لا يتغير */
-    width: 90%;
-    margin: 20px auto;
-    padding: 15px;
-    background: #140e0e;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(255, 69, 0, 0.5);
-    column-gap: var(--pcrgap);
-    overflow: hidden; /* يمنع التمرير داخل العنصر */
-    box-sizing: border-box; /* يحافظ على تناسق الحجم */
-}
 
 .centered-content {
       display: flex;
@@ -571,7 +559,11 @@ a:hover {
         border-radius: 8px;
     }
 }
-
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
 @media (max-width: 380px) {
     .game-grid {
         display: grid;
