@@ -220,12 +220,13 @@
             font-size: 16px;
         }
         #game-grid {
-            display: flex; 
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            padding: 20px 0;
-        }
+    display: grid;
+    gap: 20px;
+    padding: 20px 0;
+    max-width: 90%;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    margin: auto;
+}
         #pagination {
             margin-top: 20px;
         }
@@ -863,7 +864,12 @@ a:hover {
     width: 100px;
 }
 
-
+@media (max-width: 445px) {
+            .container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+       
 
 .navbar {
     display: flex
@@ -941,7 +947,6 @@ a:hover {
         <div class="site-title">Gaming World</div>
         <div class="header-controls">
             <input type="text" id="searchBox" placeholder="بحث..." class="search-box">
-            <button id="theme-toggle">🌙</button>
             </div>
         </div>
     </header>
