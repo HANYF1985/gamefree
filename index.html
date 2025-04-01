@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gaming World</title>
     <style>
-        body {
+         body {
             font-family: Arial, sans-serif;
             background-color: white;
             color: black;
             transition: background-color 0.3s, color 0.3s;
+            margin: 0;
+            padding: 0;
         }
         .dark-mode {
             background-color: #121212;
@@ -28,10 +30,10 @@
         }
         .site-title {
             font-size: 24px;
-    font-weight: bold;
-    margin: 0;
-    flex-shrink: 0; /* يمنعه من التصغير */
-    white-space: nowrap;
+            font-weight: bold;
+            margin: 0;
+            flex-shrink: 0;
+            white-space: nowrap;
         }
         .header-controls {
             display: flex;
@@ -46,150 +48,118 @@
         }
         .navbar {
             display: flex;
-            gap: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
             padding: 1rem;
             background-color: #f3f3f3;
+            justify-content: center;
         }
         .navbar a {
             text-decoration: none;
             font-weight: bold;
         }
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            background-color: white;
-            min-width: 150px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .dropdown:hover .dropdown-menu {
-            display: block;
-        }
         .slider {
-    width: 100%;
-    height: 60vh;
-    position: relative;
-    overflow: hidden;
-}
-
-.slide {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 2s ease-in-out, filter 2s ease-in-out;
-}
-
-.slider img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    border-radius: 15px;
-}
-
-/* عندما تكون الصورة نشطة */
-.active {
-    opacity: 1 !important;
-    filter: brightness(0.8);
-}
- /* ======== السلايدر السفلي الجديد ======== */
- .bottom-slider {
-            position: sticky;
-            width: 80%;
-            height: 200px;
-            overflow: hidden;
-            margin: -10px auto 02px; /* ليكون فوق حاوية الألعاب */
-            z-index: 10;
-            mask-image: linear-gradient(to right, transparent, #000 10% 90%, transparent);
-            display: block; /* نضمن أنه يظهر بشكل افتراضي */
-        }
-
-        .bottom-slider .list {
-            display: flex;
             width: 100%;
-            min-width: calc(200px * 9);
+            height: 50vh;
             position: relative;
+            overflow: hidden;
         }
-
-        .bottom-slider .item {
-            width: 200px;
-            height: 200px;
+        .slide {
             position: absolute;
-            left: 100%;
-            animation: autoRun 10s linear infinite;
-            transition: filter 0.5s;
-            animation-delay: calc((10s / 9) * (var(--position) - 1) - 10s) !important;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
         }
-
-        .bottom-slider .item img {
-          width: 100%;
-          height: 100%;
-          border-radius: 10px;
+        .slider img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
         }
-
-        @keyframes autoRun {
-            from {
-                left: 100%;
-            }
-            to {
-                left: -200px;
-            }
+        .active {
+            opacity: 1 !important;
+            filter: brightness(0.8);
         }
-
-        .bottom-slider:hover .item {
-            animation-play-state: paused !important;
-            filter: grayscale(1);
-        }
-
-        .bottom-slider .item:hover {
-            filter: grayscale(0);
-        }
-
-        .fade-in {
-    animation: fadeIn cubic-bezier(0.55, 0.055, 0.675, 0.19) ease-in-out;
-}
-.container {
-    display: flex;
-            flex-wrap: wrap;
+        .bottom-slider {
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+            margin: 20px auto;
+            display: flex;
             justify-content: center;
         }
+        .bottom-slider .list {
+            display: flex;
+            overflow-x: auto;
+            gap: 10px;
+            scrollbar-width: none;
+        }
+        .bottom-slider .item {
+            flex: 0 0 auto;
+            width: 180px;
+            height: 180px;
+        }
+        .bottom-slider .item img {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            padding: 15px;
+        }
         .game-card {
-            display: inline-block;
-            width: 200px;
-            margin: 10px;
-            padding: 10px;
-            border: 1px solid #ccc;
+            background-color: #f8f8f8;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 15px;
             text-align: center;
+            transition: transform 0.3s;
         }
         .game-card:hover {
             transform: scale(1.05);
         }
         .game-image {
             width: 100%;
-            height: 180px;
+            height: 150px;
             object-fit: cover;
             border-radius: 10px;
         }
-        .game-title {
-            font-size: 18px;
-            font-weight: bold;
-            margin: 10px 0;
-        }
         .download-button {
-            display: inline-block;
-            padding: 8px 15px;
+            display: block;
+            padding: 8px;
             background-color: #007BFF;
             color: white;
             text-decoration: none;
             font-size: 14px;
             border-radius: 5px;
             transition: 0.3s;
+            margin-top: 10px;
         }
         .download-button:hover {
             background-color: #0056b3;
+        }
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+            }
+            .slider {
+                height: 40vh;
+            }
+            .bottom-slider {
+                height: 150px;
+            }
+            .game-image {
+                height: 120px;
+            }
         }
  </style>
 </head>
