@@ -290,6 +290,29 @@
 .latest-games-slider:hover .swiper-wrapper {
     animation-play-state: paused; /* إيقاف الأنيميشن */
 }
+/* الشاشات أقل من 700px */
+@media (max-width: 700px) {
+    .latest-games-slider.list {
+        width: 160px;
+        height: 160px;
+    }
+}
+
+/* الشاشات أقل من 606px */
+@media (max-width: 606px) {
+    .latest-games-slider.list {
+        width: 130px;
+        height: 130px;
+    }
+}
+
+/* الشاشات أقل من 500px */
+@media (max-width: 500px) {
+    .latest-games-slider.list {
+        width: 100px;
+        height: 100px;
+    }
+}
 
 .back-to-top {
 position: fixed;
@@ -357,7 +380,38 @@ text-decoration: underline; /* خط تحت النص عند التمرير */
     text-align: center;
 
 }
+.game-item {
+    background-color: #2b2b3d;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 0px 6px 7px rgba(0, 0, 0, 0.3);
+    border-width: 10px 10px 30px 10px;
+    transition: transform 0.9s ease, box-shadow 0.9s ease; /* تأثير الحركة وظل العنصر */
+}
+@media (max-width: 768px) {
+    .games-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 أعمدة */
+    }
+}
+.container {
+  grid-template-columns: repeat(3, 1fr);
+}
 
+@media (max-width: 480px) {
+    .games-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 أعمدة */
+    }
+}
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* تجعل العناصر تتكيف */
+  gap: 10px; /* تقليل المسافة بين الألعاب */
+  justify-content: center; /* توسيط الألعاب داخل الشبكة */
+  align-items: center;
+  width: 100%;
+  padding: 0 10px; /* إضافة بعض الهوامش الجانبية */
+}
 .game-item {
             background-color: #2b2b3d;
             padding: 10px;
